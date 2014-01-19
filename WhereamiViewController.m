@@ -8,6 +8,8 @@
 
 #import "WhereamiViewController.h"
 #import "MapPoint.h"
+#import "ReimannSum.h"
+#import "getCord.h"
 
 
 NSString * const WhereamiMapTypePrefKey = @"WhereamiMapTypePrefKey";
@@ -118,7 +120,7 @@ NSString * const WhereamiMapTypePrefKey = @"WhereamiMapTypePrefKey";
 
 
 - (IBAction)stopButton:(id)sender {
-    NSLog(@"I'm da bes");
+    NSLog(@"Done");
     [self dontFindLocation];
 }
 
@@ -126,6 +128,8 @@ NSString * const WhereamiMapTypePrefKey = @"WhereamiMapTypePrefKey";
 - (void)locationManager:(CLLocationManager *)manager
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
+//                withSum:(ReimannSum *)sum
+//                andCord:(getCord *)cord
 {
     // How many seconds ago was this new location created?
     NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
@@ -137,7 +141,8 @@ NSString * const WhereamiMapTypePrefKey = @"WhereamiMapTypePrefKey";
         // This is cached data, you don't want it, keep looking
         return;
     }
-    NSLog(@"%@", newLocation);
+    
+//    [sum updateX:[cord calcX:newLocation.coordinate.latitude] Y:[cord calcY:newLocation.coordinate.longitude]];
     [self foundLocation:newLocation];
 }
 
